@@ -12,7 +12,7 @@ const genContentAction = (type: LangType): CtActWebPage => ({
 });
 
 export const mountCommandListener = (state: BgState) => {
-  commands.onCommand.addListener(async command => {
+  commands.onCommand?.addListener(async command => {
     state.logger('[BG_RECEIVE_COMMAND] :', command);
 
     switch (command) {

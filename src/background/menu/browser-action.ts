@@ -67,5 +67,5 @@ export async function createBrowserActionMenus(state: BgState): Promise<(string 
     ),
   );
 
-  return Promise.all(browserActionMenuItems.map(item => menus.create(item)));
+  return Promise.all(browserActionMenuItems.map(item => menus.create?.(item)));
 }
