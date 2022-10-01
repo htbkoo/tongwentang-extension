@@ -33,7 +33,11 @@ export const useGeneralOpt = () => {
   );
 
   useEffect(() => {
-    storage.get('general').then(({ general }) => set(general));
+    storage.get('general').then(({ general }) => {
+      if (general) {
+        return set(general);
+      }
+    });
   }, []);
 
   return {
