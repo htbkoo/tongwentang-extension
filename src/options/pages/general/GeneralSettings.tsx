@@ -12,7 +12,7 @@ export const GeneralSettings: FC = () => {
       <Select
         id="AutoConvert"
         label={i18n.getMessage('MSG_AUTO_CONVERT')}
-        value={general.autoConvert}
+        value={general?.autoConvert}
         onChange={setAutoConvert}
       >
         {autoConvertOptions()}
@@ -20,7 +20,7 @@ export const GeneralSettings: FC = () => {
       <Select
         id="BrowserAction"
         label={i18n.getMessage('MSG_BROWSER_ACTION')}
-        value={general.browserAction}
+        value={general?.browserAction}
         onChange={setBrowserAction}
       >
         {browserActionOptions()}
@@ -28,7 +28,7 @@ export const GeneralSettings: FC = () => {
       <Select
         id="DefaultLanguage"
         label={i18n.getMessage('MSG_DEFAULT_CONVERT')}
-        value={general.defaultTarget}
+        value={general?.defaultTarget}
         onChange={setDefaultTarget}
       >
         {defaultTargetOptions()}
@@ -36,13 +36,13 @@ export const GeneralSettings: FC = () => {
       <Checkbox
         isSwitch={true}
         label={i18n.getMessage('MSG_DYNAMIC_CONVERT')}
-        checked={general.spaMode}
+        checked={general?.spaMode}
         onChange={setSpaMode}
       />
       <Checkbox
         isSwitch={true}
         label={i18n.getMessage('MSG_DEBUG_MODE')}
-        checked={general.debugMode}
+        checked={general?.debugMode}
         onChange={setDebugMode}
       />
     </form>
