@@ -21,7 +21,11 @@ export const useMenu = () => {
   useEffect(() => storage.listen(changes => set(changes.menu?.newValue), { keys: ['menu'], areaName: ['local'] }), []);
 
   useEffect(() => {
-    storage.get('menu').then(({ menu }) => set(menu));
+    storage.get('menu').then(({ menu }) => {
+      if (menu) {
+        set(menu);
+      }
+    });
   }, []);
 
   return { menu, setMenuEnable, setWebS2t, setWebT2s, setTextS2t, setTextT2s };

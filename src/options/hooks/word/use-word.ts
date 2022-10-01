@@ -11,7 +11,9 @@ export const useWord = () => {
   useEffect(
     () =>
       void storage.get('word').then(({ word }) => {
-        setWord(word);
+        if (word) {
+          setWord(word);
+        }
       }),
     [],
   );

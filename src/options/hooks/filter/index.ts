@@ -39,9 +39,12 @@ export const useFilter = () => {
   const { rules, setRules } = useFilterRules(getDefaultPref().filter.rules);
 
   useEffect(() => {
-    storage
-      .get('filter')
-      .then(({ filter: { enabled, rules } }) => void (setEnable(enabled), setRules({ type: 'RESET', payload: rules })));
+    storage.get('filter').then(res => {
+      if (res?.filter) {
+        setEnable(res.filter.enabled);
+        setRules({ type: 'RESET', payload: res.filter.rules });
+      }
+    });
   }, []);
 
   return { enabled, setEnable, rules, setRules };
