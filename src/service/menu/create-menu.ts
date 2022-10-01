@@ -41,12 +41,12 @@ function createSubMenu(parentId: MenuId, funcKey: PrefMenuGroupKeys, settings: P
         onclick: createOnClickCbBy(funcKey, target as LangType),
       };
 
-      menus.create(menuProps);
+      menus.create?.(menuProps);
     });
 }
 
 export async function createMenu(state: BgState): Promise<void> {
-  !isNil(state.menuId) && (await menus.remove(state.menuId));
+  !isNil(state.menuId) && (await menus.remove?.(state.menuId));
 
   const topMenuContexts = getTopMenuContexts(state.pref.menu.group);
 
@@ -61,7 +61,7 @@ export async function createMenu(state: BgState): Promise<void> {
   };
 
   // eslint-disable-next-line require-atomic-updates
-  state.menuId = menus.create(parentMenuProp);
+  state.menuId = menus.create?.(parentMenuProp);
 
   Object.entries(state.pref.menu.group).forEach(([funcKey, settings]) => {
     createSubMenu(state.menuId!, funcKey as PrefMenuGroupKeys, settings);

@@ -1,8 +1,8 @@
 import browser from 'webextension-polyfill';
 
 export namespace menus {
-  export const create = browser.contextMenus.create;
-  export const remove = browser.contextMenus.remove;
+  export const create = browser.contextMenus?.create;
+  export const remove = browser.contextMenus?.remove;
 
   // constant
   export const ContextOnAll: menus.ContextType[] = ['page', 'frame', 'selection', 'link', 'image', 'video', 'audio'];
