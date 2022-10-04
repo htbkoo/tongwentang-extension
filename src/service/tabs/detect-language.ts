@@ -5,17 +5,12 @@ import { chsTypes, chtTypes, ZhType } from './tabs.constant';
 const langToZhtype = (lang: string): ZhType =>
   chsTypes.find(tag => tag === lang) ? ZhType.hans : chtTypes.find(tag => tag === lang) ? ZhType.hant : ZhType.und;
 
-export const detectLanguage = (tabId?: number): Promise<ZhType> => {
+export const detectLanguage = async (tabId?: number): Promise<ZhType> => {
   try {
-    return (
-      tabs
-        .detectLanguage(tabId)
-        .then(toLower)
-        .then(langToZhtype)
-        // INFO: some browsers may fail with detect language api
-        .catch(() => ZhType.und)
-    );
+    const lang = await tabs.detectLanguage(tabId);
+    return langToZhtype(toLower(lang));
   } catch (e) {
-    return Promise.resolve(ZhType.und);
+    // INFO: some browsers may fail with detect language api
+    return ZhType.und;
   }
 };
